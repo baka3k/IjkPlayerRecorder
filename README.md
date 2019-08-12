@@ -12,10 +12,12 @@ Video player based on [ffplay](http://ffmpeg.org)
 - Android:
  - Gradle
 ```
-
+- in coming...
 ```
 - iOS
- - in coming...
+```
+- in coming...
+```
 
 ### My Build Environment
 - Common
@@ -141,9 +143,8 @@ Have fun :)
 
 ### Build iOS
 ```
-git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-ios
-cd ijkplayer-ios
-git checkout -B latest k0.8.8
+git clone https://github.com/baka3k/IjkPlayerRecorder.git
+cd IjkPlayerRecorder
 
 ./init-ios.sh
 
