@@ -3270,7 +3270,32 @@ int ffp_stop_recording_l(FFPlayer *ffp){
     }
     return 0;
 }
+void ffp_get_current_frame_l(FFPlayer *ffp, uint8_t *frame_buf)
+{
+    ALOGD("=============>start snapshot\n");
 
+    VideoState *is = ffp->is;
+    Frame *vp;
+    int i = 0, linesize = 0, pixels = 0;
+    uint8_t *src;
+
+    vp = &is->pictq.queue[is->pictq.rindex];
+    int height = vp->bmp->h;
+    int width = vp->bmp->w;
+
+    ALOGD("=============>%d X %d === %d\n", width, height, vp->bmp->pitches[0]);
+
+    // copy data to bitmap in java code
+    linesize = vp->bmp->pitches[0];
+    src = vp->bmp->pixels[0];
+    pixels = width * 4;
+    for (i = 0; i < height; i++)
+    {
+        memcpy(frame_buf + i * pixels, src + i * linesize, pixels);
+    }
+
+    ALOGD("=============>end snapshot\n");
+}
 /* this thread gets the stream from the disk or the network */
 static int read_thread(void *arg)
 {

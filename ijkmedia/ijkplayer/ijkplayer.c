@@ -847,3 +847,6 @@ int ijkmp_isRecordFinished(IjkMediaPlayer *mp)
 int ijkmp_isRecording(IjkMediaPlayer *mp) {
     return mp->ffplayer->is_record;
 }
+void ijkmp_get_current_frame(IjkMediaPlayer *mp,uint8_t *frame_buf){
+    ffp_get_current_frame_l(mp->ffplayer,frame_buf);
+}
